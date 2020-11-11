@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Comments</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="medium">Comments</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <app-error-state *ngIf="isError"></app-error-state>
+  <app-loading *ngIf="isLoading"></app-loading>
+  <div *ngIf="!isLoading" class="ion-margin-top">
+    <ion-item *ngFor="let comment of comments" class="ion-margin-bottom">
+      <ion-thumbnail slot="start">
+        <img [src]="comment.owner.picture">
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{comment.owner.firstName}}</h3>
+        <p [innerHTML]="comment.message"></p>
+      </ion-label>
+    </ion-item>
+  </div>
+</ion-content>

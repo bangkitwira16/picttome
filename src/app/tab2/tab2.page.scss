@@ -1,0 +1,22 @@
+ion-slides {
+    ion-slide {
+        width: auto !important;
+    }
+}
+.img-grid {
+    height: 117px;
+    object-fit: cover;   
+    width: 100%
+    ;
+}
+div.loading {
+    margin-top: 30px;
+    display: block;
+    text-align: center;
+     
+    span {
+        margin-top: auto;
+        margin-bottom: auto;
+        display: block;
+    }
+}
