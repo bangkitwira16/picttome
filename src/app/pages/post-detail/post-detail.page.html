@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Post Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="medium">Post Details</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <app-error-state *ngIf="isError"></app-error-state>
+  <app-loading *ngIf="isLoading"></app-loading>
+  <ion-card *ngIf="!isLoading">
+    <ion-item class="user pt-2">
+      <ion-avatar slot="start">
+        <img [src]="post?.owner?.picture">
+      </ion-avatar>
+      <ion-label><span class="bold">{{post?.owner?.firstName}}</span>, {{post.publishDate | date}}</ion-label>
+    </ion-item>
+    <img [src]="post?.image" class="img-cover" />
+    <ion-row>
+      <ion-col class="d-flex">
+        <ion-icon name="heart" class="medium" color="danger"></ion-icon> <span class="my-auto bold">{{post?.likes}}
+          likes</span>
+      </ion-col>
+    </ion-row>
+    <ion-card-content>
+      <p>{{post?.text}}</p>
+      <ion-chip color="primary" class="ion-margin-top mr-2" *ngFor="let tag of post?.tags" outline="true"
+        color="danger">
+        <ion-label>{{tag}}</ion-label>
+      </ion-chip>
+      
+      <ion-button expand="block" fill="outline" (click)="viewComments(postId)">View Comments</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

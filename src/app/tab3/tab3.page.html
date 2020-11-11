@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Users
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,25 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">Users</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <app-error-state *ngIf="isError"></app-error-state>
+  <app-loading *ngIf="isLoading"></app-loading>
+  <div *ngIf="!isLoading">
+    <ion-item *ngFor="let user of users" (click)="clickUserDetail(user)">
+      <ion-avatar slot="end">
+        <img [src]="user.picture">
+      </ion-avatar>
+      <ion-label>
+        <h3>{{user.firstName}} {{user.lastName}}</h3>
+        <p>{{user.email}}</p>
+      </ion-label>
+    </ion-item>
+  </div>
+  <!-- <app-explore-container name="Tab 3 page"></app-explore-container> -->
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="LoadMoreUsers($event)" *ngIf="!isError">
+    <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Loading More Users...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
